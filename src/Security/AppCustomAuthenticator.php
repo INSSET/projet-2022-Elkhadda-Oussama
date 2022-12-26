@@ -26,6 +26,7 @@ class AppCustomAuthenticator extends AbstractAuthenticator
         // TODO: Implement onAuthenticationSuccess() method.
     }
 
+
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         // TODO: Implement onAuthenticationFailure() method.
