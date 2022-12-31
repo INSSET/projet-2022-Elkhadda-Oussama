@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CommerçantRepository;
+use App\Repository\CommercantRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: CommerçantRepository::class)]
-class Commerçant implements UserInterface, PasswordAuthenticatedUserInterface
+#[ORM\Entity(repositoryClass: CommercantRepository::class)]
+class Commercant implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,7 +16,7 @@ class Commerçant implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $username = null;
+    private ?string $email = null;
 
     #[ORM\Column]
     private array $roles = [];
@@ -27,19 +27,22 @@ class Commerçant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\ManyToOne(inversedBy: 'commercants')]
+    private ?Commande $Commande = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getEmail(): ?string
     {
-        return $this->username;
+        return $this->email;
     }
 
-    public function setUsername(string $username): self
+    public function setEmail(string $email): self
     {
-        $this->username = $username;
+        $this->email = $email;
 
         return $this;
     }
@@ -51,7 +54,7 @@ class Commerçant implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->username;
+        return (string) $this->email;
     }
 
     /**
@@ -95,5 +98,17 @@ class Commerçant implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->Commande;
+    }
+
+    public function setCommande(?Commande $Commande): self
+    {
+        $this->Commande = $Commande;
+
+        return $this;
     }
 }
