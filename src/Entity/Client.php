@@ -27,16 +27,6 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Nom = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $Prenom = null;
-
-    #[ORM\ManyToOne(inversedBy: 'clients')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Commande $Commande = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -105,41 +95,5 @@ class Client implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    public function getNom(): ?string
-    {
-        return $this->Nom;
-    }
-
-    public function setNom(string $Nom): self
-    {
-        $this->Nom = $Nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->Prenom;
-    }
-
-    public function setPrenom(string $Prenom): self
-    {
-        $this->Prenom = $Prenom;
-
-        return $this;
-    }
-
-    public function getCommande(): ?Commande
-    {
-        return $this->Commande;
-    }
-
-    public function setCommande(?Commande $Commande): self
-    {
-        $this->Commande = $Commande;
-
-        return $this;
     }
 }
