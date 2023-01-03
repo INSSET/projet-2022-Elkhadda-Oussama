@@ -4,16 +4,24 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use http\Client;
+use App\Entity\Client;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
-    public function load(ObjectManager $manager): void
-    {
+    private $pswcrypter;
+    public function __construct(UserPasswordHasherInterface $pswcrypter){
+        $this->pswcrypter = $pswcrypter;
+    }
+
+    public function load(ObjectManager $manager): void{
          $client = new Client();
-         $client->setUserIdentifier('oussama@gmail.com');
+         $psworigin = "admin123";
+         $pswdecrypter= $this->pswcrypter
+             ->hashPassword($client,$psworigin);
+         $client->setEmail('oussama@gmail.com');
          $client->setRoles(['ROLE_ADMIN']);
-         $client->setPassword('123');
+         $client->setPassword($pswdecrypter);
          $manager->persist($client);
 
         $manager->flush();
