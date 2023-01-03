@@ -8,10 +8,12 @@
         <thead>
         <tr>
 
-            <th scope="col">Numero</th>
+            <th scope="col">Id</th>
+            <th scope="col">designation</th>
+            <th scope="col">description</th>
             <th scope="col">prix</th>
-            <th scope="col">désignation</th>
-            <th scope="col">quantité</th>
+            <th scope="col">quantite</th>
+
 
         </tr>
         </thead>
@@ -20,11 +22,22 @@
             <th scope="row">1</th>
             <td>150</td>
             <td>pc gamer</td>
-            <td>ram 16 ssd</td>
+            <td>150</td>
 
         </tr>
 
 
         </tbody>
+        {% for produit in Product %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ product.designation }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.prix }}</td>
+            <td>{{ product.quantite }}</td>
+
+        </tr>
+
+        {% endfor %}
     </table>
 {% endblock %}
