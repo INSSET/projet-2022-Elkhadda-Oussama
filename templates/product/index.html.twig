@@ -3,41 +3,35 @@
 {% block title %}la liste des Produits{% endblock %}
 
 {% block body %}
+    <div class="card">
+            Liste des produits
+    </div>
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Désignation</th>
+                    <th>Déscription</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{ % for product in products % }}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ product.designation }}</td>
+                    <td>{{ product.desciption }}</td>
+                    <td>{{ product.prix }}</td>
+                    <td>{{ product.quantite }}</td>
+                </tr>
+                </tbody>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-
-            <th scope="col">Id</th>
-            <th scope="col">designation</th>
-            <th scope="col">description</th>
-            <th scope="col">prix</th>
-            <th scope="col">quantite</th>
+            </table>
 
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>150</td>
-            <td>pc gamer</td>
-            <td>150</td>
-
-        </tr>
+        </div>
 
 
-        </tbody>
-        {% for produit in Product %}
-        <tr>
-            <td>{{ loop.index }}</td>
-            <td>{{ product.designation }}</td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.prix }}</td>
-            <td>{{ product.quantite }}</td>
-
-        </tr>
-
-        {% endfor %}
-    </table>
 {% endblock %}
