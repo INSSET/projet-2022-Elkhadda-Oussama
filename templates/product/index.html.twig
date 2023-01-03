@@ -18,14 +18,23 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{ % for product in products % }}
-                <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ product.designation }}</td>
-                    <td>{{ product.desciption }}</td>
-                    <td>{{ product.prix }}</td>
-                    <td>{{ product.quantite }}</td>
-                </tr>
+                    {%  for product in products %}
+
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ product.designation }}</td>
+                            <td>{{ product.desciption }}</td>
+                            <td>{{ product.prix }}</td>
+                            <td>{{ product.quantite }}</td>
+                        </tr>
+
+
+
+
+
+
+                    {% endfor %}
+
                 </tbody>
 
             </table>
